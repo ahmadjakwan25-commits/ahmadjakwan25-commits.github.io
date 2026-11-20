@@ -300,13 +300,19 @@ footer a{color:var(--gold2)}
 <script>
 (function(){
   var oa=document.getElementById('oa'),H='#safetube',viaClick=false;
+  function want(){
+    var h=(location.hash||'').toLowerCase().replace(/^#\/?/,'');
+    if(h==='safetube')return true;
+    var q=(location.search||'').toLowerCase();
+    return /[?&](app=)?safetube(&|$)/.test(q);
+  }
   function show(){oa.hidden=false;document.body.style.overflow='hidden';oa.scrollTop=0;}
   function hide(){oa.hidden=true;document.body.style.overflow='';}
-  function sync(){if(location.hash===H)show();else hide();}
+  function sync(){if(want())show();else hide();}
   document.getElementById('oaOpen').addEventListener('click',function(){viaClick=true;location.hash=H;});
   document.getElementById('oaBack').addEventListener('click',function(){
-    if(viaClick){history.back();}
-    else{try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}hide();}
+    if(viaClick&&location.hash){history.back();}
+    else{try{history.replaceState(null,'',location.pathname);}catch(e){}hide();}
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!oa.hidden)document.getElementById('oaBack').click();});
   window.addEventListener('hashchange',sync);
@@ -326,26 +332,49 @@ footer a{color:var(--gold2)}
   box.addEventListener('click',function(e){if(e.target===box)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
   function bn(n){try{return Number(n).toLocaleString('bn-BD');}catch(e){return String(n);}}
-  function show(name,repo,green){
-    box.className='cnt'+(green?' g':'');box.hidden=false;
-    cn.textContent=name;num.textContent='…';lb.textContent='লোড হচ্ছে…';ls.innerHTML='';
-    fetch(API+repo+'/releases?per_page=100',{headers:{'Accept':'application/vnd.github+json'}})
-      .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+  function bd(s){return String(s).replace(/\d/g,function(d){return '০১২৩৪৫৬৭৮৯'.charAt(d);});}
+  function viaApi(repo){
+    return fetch(API+repo+'/releases?per_page=100',{headers:{'Accept':'application/vnd.github+json'}})
+      .then(function(r){if(!r.ok){var e=new Error('http');e.code=r.status;throw e;}return r.json();})
       .then(function(rel){
         var total=0,rows=[];
         rel.forEach(function(r){
           var c=0;(r.assets||[]).forEach(function(a){if(/\.apk$/i.test(a.name))c+=a.download_count||0;});
           total+=c;rows.push([r.tag_name||r.name||'',c]);
         });
-        num.textContent=bn(total);lb.textContent='মোট ডাউনলোড';
-        rows.slice(0,6).forEach(function(x){
+        return {text:bn(total),rows:rows};
+      });
+  }
+  function viaShield(repo){
+    return fetch('https://img.shields.io/github/downloads/'+repo+'/total.json')
+      .then(function(r){if(!r.ok){var e=new Error('http');e.code=r.status;throw e;}return r.json();})
+      .then(function(j){
+        var m=String(j.message||'').trim();
+        if(!/^[\d.,]+\s*[kKMG]?$/.test(m))throw new Error('bad');
+        if(/^\d+$/.test(m))return {text:bn(m),rows:[]};
+        var u=/k/i.test(m)?' হাজার':/M/.test(m)?' মিলিয়ন':' বিলিয়ন';
+        return {text:'প্রায় '+bd(m.replace(/[kKMG]/,'').trim())+u,rows:[]};
+      });
+  }
+  function show(name,repo,green){
+    box.className='cnt'+(green?' g':'');box.hidden=false;
+    cn.textContent=name;num.textContent='…';lb.textContent='লোড হচ্ছে…';ls.innerHTML='';
+    var code='';
+    viaApi(repo)
+      .catch(function(e){code=e&&e.code?e.code:'নেটওয়ার্ক';return viaShield(repo);})
+      .then(function(res){
+        num.textContent=res.text;lb.textContent='মোট ডাউনলোড';
+        res.rows.slice(0,6).forEach(function(x){
           var li=document.createElement('li');
           var a=document.createElement('span'),b=document.createElement('span');
           a.textContent=x[0];b.textContent=bn(x[1]);
           li.appendChild(a);li.appendChild(b);ls.appendChild(li);
         });
       })
-      .catch(function(){num.textContent='—';lb.textContent='সংখ্যা আনা যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।';});
+      .catch(function(e){
+        num.textContent='—';
+        lb.textContent='সংখ্যা আনা যায়নি (কোড: '+bd(code||(e&&e.code)||'?')+')। কিছুক্ষণ পর আবার চেষ্টা করুন।';
+      });
   }
   function tapN(el,n,cb){
     if(!el)return;
