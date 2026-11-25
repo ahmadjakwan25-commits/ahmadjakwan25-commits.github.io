@@ -31,6 +31,37 @@ footer{background:linear-gradient(115deg,#102f3b,#124b43 70%,#263e56);color:#eaf
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 @media(max-width:760px){.nav{padding:10px 16px}.menu{display:block}nav{display:none;position:absolute;top:68px;left:12px;right:12px;padding:16px;background:#10382f;border:1px solid #ffffff24;border-radius:14px;flex-direction:column;align-items:stretch;gap:0}nav.open{display:flex}nav a{padding:10px 8px;border-bottom:1px solid #ffffff16}.hero{margin-top:18px;padding:0 14px}.hero-panel{padding:42px 24px;min-height:360px;border-radius:22px}.hero p{font-size:15px}.section{padding:23px 14px}.grid{grid-template-columns:1fr 1fr;gap:12px}.feature{padding:17px}.feature h3{font-size:17px}.latest{grid-template-columns:1fr}.quote{padding:0 14px}.section-head h2{font-size:26px}}
 @media(max-width:440px){.grid{grid-template-columns:1fr}.brand strong{font-size:18px}.hero h1{font-size:34px}.hero-panel:before{right:-45px}.actions .btn{flex:1}}
+
+body.qlock{overflow:hidden}
+.qr{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;background:var(--cream)}
+.qr[hidden]{display:none}
+.qr-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(16,47,59,.96);color:#fff;border-bottom:1px solid #ffffff18}
+.qr-bar h2{flex:1;margin:0;font-size:18px;text-align:center;line-height:1.3}
+.qr-btn{background:#ffffff14;border:1px solid #ffffff55;color:#fff;border-radius:10px;padding:7px 13px;font:inherit;font-size:15px;cursor:pointer}
+.qr-btn[hidden]{display:none}
+.qr-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch}
+.qr-in{max-width:820px;margin:0 auto;padding:16px 14px 40px}
+.qr-search{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid #d6c08e;background:#fffdf0;font:inherit;font-size:16px;color:var(--ink);margin-bottom:14px}
+.qr-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.qr-list li[hidden]{display:none}
+@media(max-width:520px){.qr-list{grid-template-columns:1fr}}
+.qr-list button{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:#fffdf0e8;border:1px solid #e6dfce;border-radius:14px;padding:11px 13px;font:inherit;color:var(--ink);cursor:pointer}
+.qr-list button:hover{border-color:#d6c08e}
+.qn{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:14px;color:#176b5b;background:linear-gradient(135deg,#e5f2eb,#e8eafa)}
+.qm{flex:1;min-width:0}.qm b{display:block;color:#164e50;font-size:17px;line-height:1.3}.qm small{color:#79837c;font-size:12.5px}
+.qr-empty,.qr-msg{text-align:center;color:var(--muted);padding:30px 10px}
+.qr-msg button{margin-top:12px;background:linear-gradient(135deg,#e7ca91,#c69b55);color:#24392f;border:0;border-radius:12px;padding:10px 20px;font:inherit;font-weight:600;cursor:pointer}
+.qs-head{text-align:center;margin:6px 0 18px}.qs-head h3{margin:2px 0;color:var(--deep);font-size:22px}.qs-head small{color:var(--muted)}
+.bism{font-family:'Amiri',serif;text-align:center;font-size:30px;color:#176b5b;margin:0 0 18px;line-height:1.9}
+.ay{background:#fffdf0e8;border:1px solid #e6dfce;border-radius:16px;padding:16px 16px 14px;margin-bottom:12px}
+.ay-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.ay-no{min-width:34px;height:34px;padding:0 8px;border-radius:17px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#176b5b;background:linear-gradient(135deg,#e5f2eb,#e8eafa)}
+.ay-ar{font-family:'Amiri',serif;font-size:calc(30px * var(--qz,1));line-height:2.1;color:#17382f;text-align:right;direction:rtl;margin:0}
+.ay-bn{font-size:calc(16.5px * var(--qz,1));line-height:1.85;color:#3d5148;margin:8px 0 0}
+.qs-nav{display:flex;gap:10px;justify-content:space-between;margin-top:20px}
+.qs-nav button{flex:1;background:#fffdf0;border:1px solid #d6c08e;color:#164e50;border-radius:12px;padding:11px;font:inherit;font-weight:600;cursor:pointer}
+.qs-nav button[disabled]{opacity:.4;cursor:default}
+.qr-credit{text-align:center;color:#9b7945;font-size:12px;margin-top:18px}
 </style>
 </head>
 <body>
@@ -57,8 +88,9 @@ footer{background:linear-gradient(115deg,#102f3b,#124b43 70%,#263e56);color:#eaf
 <section class="section" id="about">
   <div class="section-head"><span class="mini">WELCOME TO OUR WEBSITE</span><h2>ইসলামের সৌন্দর্য জানুন</h2><p>বিশুদ্ধ জ্ঞান অর্জন ও নেক আমলে উদ্বুদ্ধ হওয়ার একটি সুন্দর আয়োজন</p></div>
   <div class="grid">
+    <a class="feature" href="#quran" id="quranOpen" style="display:block;cursor:pointer"><div class="feature-icon">📖</div><h3>কুরআন</h3><p>সম্পূর্ণ কুরআন পড়ুন, মুহিউদ্দীন খান-এর বাংলা তরজমাসহ।</p></a>
     <article class="feature"><div class="feature-icon">📖</div><h3>কুরআন শিক্ষা</h3><p>পবিত্র কুরআনের আয়াত, অর্থ ও শিক্ষা থেকে জীবন গড়ার অনুপ্রেরণা।</p></article>
-    <article class="feature"><div class="feature-icon">🌙</div><h3>হাদিস ও সুন্নাহ</h3><p>রাসুলুল্লাহ ﷺ-এর বাণী ও আদর্শ থেকে দৈনন্দিন জীবনের দিকনির্দেশনা।</p></article>
+    <a class="feature" href="#hadith" id="hadithOpen" style="display:block;cursor:pointer"><div class="feature-icon">🌙</div><h3>হাদিস ও সুন্নাহ</h3><p>সিহাহ সিত্তাহর হাদিস আরবি ও বাংলাসহ পড়ুন, রাসুলুল্লাহ ﷺ-এর বাণী ও আদর্শ থেকে দিকনির্দেশনা নিন।</p></a>
     <article class="feature"><div class="feature-icon">🕌</div><h3>ইবাদত ও আমল</h3><p>নামাজ, দোয়া, যিকির ও নেক আমল সম্পর্কে প্রয়োজনীয় আলোচনা।</p></article>
   </div>
 </section>
@@ -103,6 +135,267 @@ footer{background:linear-gradient(115deg,#102f3b,#124b43 70%,#263e56);color:#eaf
 const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('mainNav');
 menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+</script>
+
+<div class="qr" id="qr" hidden role="dialog" aria-modal="true" aria-labelledby="qrT">
+  <div class="qr-bar">
+    <button type="button" class="qr-btn" id="qrBack">← ফিরে যান</button>
+    <h2 id="qrT">কুরআন</h2>
+    <button type="button" class="qr-btn" id="qrA" hidden aria-label="লেখা বড়-ছোট করুন">Aa</button>
+  </div>
+  <div class="qr-body" id="qrBody"><div class="qr-in" id="qrIn"></div></div>
+</div>
+<script>
+(function(){
+  var S=["আল-ফাতিহা|7", "আল-বাকারা|286", "আলে ইমরান|200", "আন-নিসা|176", "আল-মায়িদা|120", "আল-আনআম|165", "আল-আরাফ|206", "আল-আনফাল|75", "আত-তাওবা|129", "ইউনুস|109", "হুদ|123", "ইউসুফ|111", "আর-রাদ|43", "ইবরাহীম|52", "আল-হিজর|99", "আন-নাহল|128", "আল-ইসরা|111", "আল-কাহফ|110", "মারইয়াম|98", "ত্বা-হা|135", "আল-আম্বিয়া|112", "আল-হাজ্জ|78", "আল-মুমিনুন|118", "আন-নূর|64", "আল-ফুরকান|77", "আশ-শুআরা|227", "আন-নামল|93", "আল-কাসাস|88", "আল-আনকাবুত|69", "আর-রূম|60", "লুকমান|34", "আস-সাজদা|30", "আল-আহযাব|73", "সাবা|54", "ফাতির|45", "ইয়াসীন|83", "আস-সাফফাত|182", "সোয়াদ|88", "আয-যুমার|75", "গাফির|85", "ফুসসিলাত|54", "আশ-শূরা|53", "আয-যুখরুফ|89", "আদ-দুখান|59", "আল-জাসিয়া|37", "আল-আহকাফ|35", "মুহাম্মাদ|38", "আল-ফাতহ|29", "আল-হুজুরাত|18", "ক্বাফ|45", "আয-যারিয়াত|60", "আত-তূর|49", "আন-নাজম|62", "আল-কামার|55", "আর-রহমান|78", "আল-ওয়াকিয়া|96", "আল-হাদীদ|29", "আল-মুজাদালা|22", "আল-হাশর|24", "আল-মুমতাহিনা|13", "আস-সফ|14", "আল-জুমুআ|11", "আল-মুনাফিকূন|11", "আত-তাগাবুন|18", "আত-তালাক|12", "আত-তাহরীম|12", "আল-মুলক|30", "আল-কলম|52", "আল-হাক্কা|52", "আল-মাআরিজ|44", "নূহ|28", "আল-জিন|28", "আল-মুযযাম্মিল|20", "আল-মুদ্দাসসির|56", "আল-কিয়ামাহ|40", "আল-ইনসান|31", "আল-মুরসালাত|50", "আন-নাবা|40", "আন-নাযিআত|46", "আবাসা|42", "আত-তাকভীর|29", "আল-ইনফিতার|19", "আল-মুতাফফিফীন|36", "আল-ইনশিকাক|25", "আল-বুরূজ|22", "আত-তারিক|17", "আল-আলা|19", "আল-গাশিয়া|26", "আল-ফজর|30", "আল-বালাদ|20", "আশ-শামস|15", "আল-লাইল|21", "আদ-দুহা|11", "আল-ইনশিরাহ|8", "আত-তীন|8", "আল-আলাক|19", "আল-কদর|5", "আল-বাইয়্যিনাহ|8", "আয-যিলযাল|8", "আল-আদিয়াত|11", "আল-কারিআ|11", "আত-তাকাসুর|8", "আল-আসর|3", "আল-হুমাযা|9", "আল-ফীল|5", "কুরাইশ|4", "আল-মাউন|7", "আল-কাওসার|3", "আল-কাফিরূন|6", "আন-নাসর|3", "আল-লাহাব|5", "আল-ইখলাস|4", "আল-ফালাক্ব|5", "আন-নাস|6"];
+  var API='https://api.alquran.cloud/v1/surah/';
+  var qr=document.getElementById('qr'),body=document.getElementById('qrBody'),inn=document.getElementById('qrIn'),
+      title=document.getElementById('qrT'),aBtn=document.getElementById('qrA'),cache={},zoom=1,token=0;
+  function bn(n){try{return Number(n).toLocaleString('bn-BD');}catch(e){return String(n);}}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+  function info(i){var p=S[i-1].split('|');return {name:p[0],count:+p[1]};}
+
+  function showList(){
+    token++;title.textContent='কুরআন';aBtn.hidden=true;inn.textContent='';
+    var q=el('input','qr-search');q.type='search';q.placeholder='সূরার নাম বা নম্বর দিয়ে খুঁজুন';q.setAttribute('aria-label','সূরা খুঁজুন');
+    var ul=el('ul','qr-list'),empty=el('p','qr-empty','কোনো সূরা পাওয়া যায়নি');empty.hidden=true;
+    S.forEach(function(_,k){
+      var i=k+1,d=info(i),li=el('li'),b=el('button');b.type='button';
+      b.dataset.k=(i+' '+d.name).toLowerCase();
+      b.appendChild(el('span','qn',bn(i)));
+      var m=el('span','qm');m.appendChild(el('b','',d.name));m.appendChild(el('small','','আয়াত '+bn(d.count)));b.appendChild(m);
+      b.addEventListener('click',function(){location.hash='surah-'+i;});
+      li.appendChild(b);ul.appendChild(li);
+    });
+    q.addEventListener('input',function(){
+      var v=q.value.trim().toLowerCase().replace(/[০-৯]/g,function(c){return '০১২৩৪৫৬৭৮৯'.indexOf(c);}),n=0;
+      [].forEach.call(ul.children,function(li){var ok=!v||li.firstChild.dataset.k.indexOf(v)>-1;li.hidden=!ok;if(ok)n++;});
+      empty.hidden=n>0;
+    });
+    inn.appendChild(q);inn.appendChild(ul);inn.appendChild(empty);
+    inn.appendChild(el('p','qr-credit','আরবি: উসমানি · বাংলা তরজমা: মুহিউদ্দীন খান · তথ্যসূত্র: alquran.cloud'));
+    body.scrollTop=0;
+  }
+
+  function fetchSurah(n){
+    if(cache[n])return Promise.resolve(cache[n]);
+    return fetch(API+n+'/editions/quran-uthmani,bn.bengali')
+      .then(function(r){if(!r.ok)throw new Error('http');return r.json();})
+      .then(function(j){
+        var a=j&&j.data&&j.data[0]&&j.data[0].ayahs,b=j&&j.data&&j.data[1]&&j.data[1].ayahs;
+        if(!a||!b||a.length!==b.length)throw new Error('bad');
+        return cache[n]={ar:a,bn:b};
+      });
+  }
+
+  var BISM='بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ';
+  function showSurah(n){
+    var my=++token,d=info(n);
+    title.textContent=bn(n)+'. '+d.name;aBtn.hidden=false;inn.textContent='';
+    inn.appendChild(el('p','qr-msg','লোড হচ্ছে…'));body.scrollTop=0;
+    fetchSurah(n).then(function(s){
+      if(my!==token)return;
+      inn.textContent='';
+      var h=el('div','qs-head');h.appendChild(el('h3','',d.name));h.appendChild(el('small','','আয়াত '+bn(d.count)));inn.appendChild(h);
+      if(n!==1&&n!==9){var bs=el('p','bism',BISM);bs.lang='ar';bs.dir='rtl';inn.appendChild(bs);}
+      s.ar.forEach(function(a,k){
+        var t=a.text;
+        if(k===0&&n!==1&&n!==9){var w=t.split(' ');if(w.length>4)t=w.slice(4).join(' ');}
+        var c=el('article','ay'),top=el('div','ay-top');
+        top.appendChild(el('span','ay-no',bn(n)+':'+bn(a.numberInSurah)));c.appendChild(top);
+        var ar=el('p','ay-ar',t);ar.lang='ar';ar.dir='rtl';c.appendChild(ar);
+        c.appendChild(el('p','ay-bn',s.bn[k].text));
+        inn.appendChild(c);
+      });
+      var nav=el('div','qs-nav'),p=el('button','','← আগের সূরা'),x=el('button','','পরের সূরা →');
+      p.type=x.type='button';p.disabled=n<=1;x.disabled=n>=114;
+      p.addEventListener('click',function(){location.hash='surah-'+(n-1);});
+      x.addEventListener('click',function(){location.hash='surah-'+(n+1);});
+      nav.appendChild(p);nav.appendChild(x);inn.appendChild(nav);
+      inn.appendChild(el('p','qr-credit','বাংলা তরজমা: মুহিউদ্দীন খান · তথ্যসূত্র: alquran.cloud'));
+      if(n<114)fetchSurah(n+1).catch(function(){});
+    }).catch(function(){
+      if(my!==token)return;
+      inn.textContent='';
+      var m=el('div','qr-msg');m.appendChild(el('p','','সূরাটি আনা যায়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।'));
+      var b=el('button','','আবার চেষ্টা করুন');b.type='button';b.addEventListener('click',function(){showSurah(n);});
+      m.appendChild(b);inn.appendChild(m);
+    });
+  }
+
+  function route(){
+    var h=(location.hash||'').replace('#','');
+    var m=/^surah-(\d+)$/.exec(h);
+    if(m&&+m[1]>=1&&+m[1]<=114){qr.hidden=false;document.body.classList.add('qlock');showSurah(+m[1]);}
+    else if(h==='quran'){qr.hidden=false;document.body.classList.add('qlock');showList();}
+    else if(/^hadith/.test(h)){return;}
+    else{qr.hidden=true;document.body.classList.remove('qlock');token++;}
+  }
+  document.getElementById('qrBack').addEventListener('click',function(){
+    if(/^#hadith/.test(location.hash))return;
+    if(/^#surah-/.test(location.hash))location.hash='quran';
+    else{try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}route();}
+  });
+  aBtn.addEventListener('click',function(){zoom=zoom>=1.4?0.9:Math.round((zoom+0.15)*100)/100;qr.style.setProperty('--qz',zoom);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!qr.hidden)document.getElementById('qrBack').click();});
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+<script>
+(function(){
+  var B=[['bukhari','সহীহ বুখারী','ইমাম বুখারী (রহ.)'],['muslim','সহীহ মুসলিম','ইমাম মুসলিম (রহ.)'],['abudawud','সুনানে আবু দাউদ','ইমাম আবু দাউদ (রহ.)'],['tirmidhi','জামে তিরমিযী','ইমাম তিরমিযী (রহ.)'],['nasai','সুনানে নাসাঈ','ইমাম নাসাঈ (রহ.)'],['ibnmajah','সুনানে ইবনে মাজাহ','ইমাম ইবনে মাজাহ (রহ.)']];
+  var BASE='https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/',PAGE=30;
+  var qr=document.getElementById('qr'),body=document.getElementById('qrBody'),inn=document.getElementById('qrIn'),
+      title=document.getElementById('qrT'),aBtn=document.getElementById('qrA'),cache={},books={},token=0;
+  function bn(n){try{return Number(n).toLocaleString('bn-BD');}catch(e){return String(n);}}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+  function book(k){for(var i=0;i<B.length;i++)if(B[i][0]===k)return {key:k,name:B[i][1],by:B[i][2]};return null;}
+  function ok(r){if(!r.ok)throw new Error('http');return r.json();}
+  function getJSON(u){
+    if(cache[u])return Promise.resolve(cache[u]);
+    return fetch(u).then(ok).catch(function(){return fetch(u.replace(/\.json$/,'.min.json')).then(ok);}).then(function(j){return cache[u]=j;});
+  }
+  function sec(ed,n){return getJSON(BASE+ed+'/sections/'+n+'.json');}
+  function open(){qr.hidden=false;document.body.classList.add('qlock');}
+  function fail(my,retry){
+    if(my!==token)return;
+    inn.textContent='';
+    var m=el('div','qr-msg');m.appendChild(el('p','','হাদিস আনা যায়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।'));
+    var b=el('button','','আবার চেষ্টা করুন');b.type='button';b.addEventListener('click',retry);
+    m.appendChild(b);inn.appendChild(m);
+  }
+  function norm(v){return v.trim().toLowerCase().replace(/[০-৯]/g,function(c){return '০১২৩৪৫৬৭৮৯'.indexOf(c);});}
+
+  /* বইয়ের অধ্যায় তালিকা (API-র metadata থেকে) */
+  function bookSecs(k){
+    if(books[k])return Promise.resolve(books[k]);
+    return sec('ben-'+k,1).then(function(j){
+      var m=(j&&j.metadata)||{},names=m.section||{},det=m.section_details||{},list=[];
+      Object.keys(names).forEach(function(key){
+        var n=+key;if(!n)return;
+        var d=det[key]||{},f=d.hadithnumber_first,l=d.hadithnumber_last;
+        if(d&&f===0&&l===0)return;
+        list.push({n:n,title:(names[key]||'').trim()||('অধ্যায় '+bn(n)),first:f,last:l});
+      });
+      list.sort(function(a,b){return a.n-b.n;});
+      if(!list.length)throw new Error('empty');
+      return books[k]={list:list};
+    });
+  }
+
+  function showBooks(){
+    token++;title.textContent='হাদিস';aBtn.hidden=true;inn.textContent='';
+    inn.appendChild(el('p','qs-head','কোন কিতাব থেকে পড়তে চান?'));
+    var ul=el('ul','qr-list');
+    B.forEach(function(b,i){
+      var li=el('li'),btn=el('button');btn.type='button';
+      btn.appendChild(el('span','qn',bn(i+1)));
+      var m=el('span','qm');m.appendChild(el('b','',b[1]));m.appendChild(el('small','',b[2]));btn.appendChild(m);
+      btn.addEventListener('click',function(){location.hash='hadith-'+b[0];});
+      li.appendChild(btn);ul.appendChild(li);
+    });
+    inn.appendChild(ul);
+    inn.appendChild(el('p','qr-credit','তথ্যসূত্র: hadith-api (fawazahmed0)'));
+    body.scrollTop=0;
+  }
+
+  function showSections(k){
+    var my=++token,b=book(k);
+    title.textContent=b.name;aBtn.hidden=true;inn.textContent='';
+    inn.appendChild(el('p','qr-msg','লোড হচ্ছে…'));body.scrollTop=0;
+    bookSecs(k).then(function(bk){
+      if(my!==token)return;
+      inn.textContent='';
+      var q=el('input','qr-search');q.type='search';q.placeholder='অধ্যায়ের নাম বা নম্বর দিয়ে খুঁজুন';q.setAttribute('aria-label','অধ্যায় খুঁজুন');
+      var ul=el('ul','qr-list'),empty=el('p','qr-empty','কোনো অধ্যায় পাওয়া যায়নি');empty.hidden=true;
+      ul.style.gridTemplateColumns='1fr';
+      bk.list.forEach(function(s){
+        var li=el('li'),btn=el('button');btn.type='button';
+        btn.dataset.k=(s.n+' '+s.title).toLowerCase();
+        btn.appendChild(el('span','qn',bn(s.n)));
+        var m=el('span','qm');m.appendChild(el('b','',s.title));
+        if(s.first!=null&&s.last!=null)m.appendChild(el('small','','হাদিস '+bn(s.first)+' – '+bn(s.last)));
+        btn.appendChild(m);
+        btn.addEventListener('click',function(){location.hash='hadith-'+k+'-'+s.n;});
+        li.appendChild(btn);ul.appendChild(li);
+      });
+      q.addEventListener('input',function(){
+        var v=norm(q.value),n=0;
+        [].forEach.call(ul.children,function(li){var o=!v||li.firstChild.dataset.k.indexOf(v)>-1;li.hidden=!o;if(o)n++;});
+        empty.hidden=n>0;
+      });
+      inn.appendChild(q);inn.appendChild(ul);inn.appendChild(empty);
+      inn.appendChild(el('p','qr-credit','তথ্যসূত্র: hadith-api (fawazahmed0)'));
+    }).catch(function(){fail(my,function(){showSections(k);});});
+  }
+
+  function gradeText(h,a){
+    var g=(h&&h.grades&&h.grades.length?h.grades:(a&&a.grades)||[]),o=[];
+    g.forEach(function(x){if(x&&x.grade)o.push(x.grade+(x.name?' ('+x.name+')':''));});
+    return o.join(' · ');
+  }
+
+  function showSection(k,n){
+    var my=++token,b=book(k);
+    title.textContent=b.name;aBtn.hidden=false;inn.textContent='';
+    inn.appendChild(el('p','qr-msg','লোড হচ্ছে…'));body.scrollTop=0;
+    bookSecs(k).then(function(bk){
+      return Promise.all([sec('ben-'+k,n),sec('ara-'+k,n).catch(function(){return null;})]).then(function(r){return {bk:bk,bn:r[0],ar:r[1]};});
+    }).then(function(d){
+      if(my!==token)return;
+      var idx=-1,cur=null;
+      d.bk.list.forEach(function(s,i){if(s.n===n){idx=i;cur=s;}});
+      var arMap={};((d.ar&&d.ar.hadiths)||[]).forEach(function(h){arMap[String(h.hadithnumber)]=h;});
+      var items=(d.bn&&d.bn.hadiths)||[];
+      inn.textContent='';
+      var hd=el('div','qs-head');hd.appendChild(el('h3','',cur?cur.title:('অধ্যায় '+bn(n))));hd.appendChild(el('small','',b.name+' · হাদিস '+bn(items.length)+'টি'));inn.appendChild(hd);
+      if(!items.length){inn.appendChild(el('p','qr-empty','এই অধ্যায়ে কোনো হাদিস পাওয়া যায়নি।'));}
+      var wrap=el('div'),more=el('div','qs-nav'),shown=0;
+      function render(){
+        var end=Math.min(items.length,shown+PAGE);
+        for(;shown<end;shown++){
+          var h=items[shown],a=arMap[String(h.hadithnumber)],c=el('article','ay'),top=el('div','ay-top');
+          top.appendChild(el('span','ay-no','হাদিস '+bn(h.hadithnumber)));c.appendChild(top);
+          if(a&&a.text){var ar=el('p','ay-ar',a.text);ar.lang='ar';ar.dir='rtl';c.appendChild(ar);}
+          if(h.text)c.appendChild(el('p','ay-bn',h.text));
+          var g=gradeText(h,a);
+          if(g){var gl=el('small','',g);gl.style.cssText='display:block;margin-top:8px;color:#9b7945;font-size:12.5px';c.appendChild(gl);}
+          wrap.appendChild(c);
+        }
+        more.textContent='';
+        if(shown<items.length){
+          var mb=el('button','','আরও দেখুন ('+bn(items.length-shown)+'টি বাকি)');mb.type='button';mb.addEventListener('click',render);more.appendChild(mb);
+        }
+      }
+      render();inn.appendChild(wrap);inn.appendChild(more);
+      var nav=el('div','qs-nav'),p=el('button','','← আগের অধ্যায়'),x=el('button','','পরের অধ্যায় →');
+      p.type=x.type='button';p.disabled=idx<=0;x.disabled=idx<0||idx>=d.bk.list.length-1;
+      p.addEventListener('click',function(){location.hash='hadith-'+k+'-'+d.bk.list[idx-1].n;});
+      x.addEventListener('click',function(){location.hash='hadith-'+k+'-'+d.bk.list[idx+1].n;});
+      nav.appendChild(p);nav.appendChild(x);inn.appendChild(nav);
+      inn.appendChild(el('p','qr-credit','তথ্যসূত্র: hadith-api (fawazahmed0)'));
+    }).catch(function(){fail(my,function(){showSection(k,n);});});
+  }
+
+  function route(){
+    var h=(location.hash||'').replace('#','');
+    var s=/^hadith-([a-z]+)-(\d+)$/.exec(h),b=/^hadith-([a-z]+)$/.exec(h);
+    if(s&&book(s[1])){open();showSection(s[1],+s[2]);}
+    else if(b&&book(b[1])){open();showSections(b[1]);}
+    else if(h==='hadith'){open();showBooks();}
+  }
+  document.getElementById('qrBack').addEventListener('click',function(){
+    var h=location.hash;
+    if(!/^#hadith/.test(h))return;
+    var m=/^#hadith-([a-z]+)-\d+$/.exec(h),b=/^#hadith-([a-z]+)$/.exec(h);
+    if(m)location.hash='hadith-'+m[1];
+    else if(b)location.hash='hadith';
+    else{try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}window.dispatchEvent(new Event('hashchange'));}
+  });
+  window.addEventListener('hashchange',route);
+  route();
+})();
 </script>
 </body>
 </html>
